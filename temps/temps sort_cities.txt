@@ -1,0 +1,25 @@
+void sort_cities(void);
+
+// TODO: Sort cities by temperature in descending order
+void sort_cities(void)
+{
+    for (int i = 0; i < NUM_CITIES; i++)
+    {
+        int max_idx = i;
+
+        for (int j = i + 1; j < NUM_CITIES; j++)
+        {
+            if (temps[max_idx].temp < temps[j].temp)
+            {
+                max_idx = j;
+            }
+        }
+        avg_temp temp = temps[i];
+        temps[i] = temps[max_idx];
+        temps[max_idx] = temp;
+    }
+}
+
+Line 1: Function Prototype for the sort_cities function
+
+Line 3 to 14: I used selection sort to sort an array of integers in descending order as it is the simplest to implement, but not the most efficient at a time complexity of O(n^2). Other choices could be Quick Sort and Merge Sort. For each iteration, we select the largest item from the unsorted partition and move it to the sorted partition from the array. We first set the maxinimum index to the first element of the array in the unsorted partition, then we progress to look for a bigger element. Once found, set it as the current maxinimum and swap it with the current element, then the first element is sorted. We repeat this process for the rest of the unsorted portion of the array until the array is sorted.
